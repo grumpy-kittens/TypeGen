@@ -2,6 +2,19 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <PackageId>TypeGen.MSBuild</PackageId>
+        <Title>TypeGen.MSBuild</Title>
+        <Description>MSBuild wrapper for TypeGen tool</Description>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Content Include="TypeGen.MSBuild.targets">
+            <Pack>true</Pack>
+            <PackagePath>build\</PackagePath>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TypeGen.Core\TypeGen.Core.csproj" />
+    </ItemGroup>
 </Project>

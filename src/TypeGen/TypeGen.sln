@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeGen.AcceptanceTest", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeGen.MSBuild", "TypeGen.MSBuild\TypeGen.MSBuild.csproj", "{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E21BE2F-C85E-4BF0-8D28-5BC271A9AA70}"
+ProjectSection(SolutionItems) = preProject
+	..\..\nuget\TypeGen.nuspec = ..\..\nuget\TypeGen.nuspec
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

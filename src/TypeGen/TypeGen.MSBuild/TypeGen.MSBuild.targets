@@ -1,25 +1,39 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
     <PropertyGroup>
-        <TSGenToolPath>$(MSBuildProjectDirectory)\bin\tools</TSGenToolPath>
-        <TSGenToolBin Condition="'$(OS)' == 'Unix'">$(TSGenToolPath)\dotnet-typegen</TSGenToolBin>
-        <TSGenToolBin Condition="'$(OS)' != 'Unix'">$(TSGenToolPath)\dotnet-typegen.exe</TSGenToolBin>
+        <!--        Options: -->
+        <!--        <TypeGenDebug></TypeGenDebug>-->
+        <!--        Overrides tool version-->
+        <!--        <TypeGenVersion></TypeGenVersion>-->
+        <!--        Aditional tool options-->
+        <!--        <TypeGenOptions></TypeGenOptions>-->
     </PropertyGroup>
-    
-    <Target Name="DEBUG" BeforeTargets="BeforeBuild">
-        <Message Text="Project dir: $(MSBuildProjectDirectory)" Importance="high"/>
-        <Message Text="Tool path: $(TSGenToolPath)" Importance="high"/>
+
+    <PropertyGroup>
+        <TypeGenToolPath>$(MSBuildProjectDirectory)\bin\tools</TypeGenToolPath>
+        <TypeGenToolBin Condition="'$(OS)' != 'Windows_NT'">$(TypeGenToolPath)\dotnet-typegen</TypeGenToolBin>
+        <TypeGenToolBin Condition="'$(OS)' == 'Windows_NT'">$(TypeGenToolPath)\dotnet-typegen.exe</TypeGenToolBin>
+        <_TypeGenVersion Condition="'$(TypeGenVersion)' == ''">2.3.3</_TypeGenVersion>
+        <_TypeGenVersion Condition="'$(TypeGenVersion)' != ''">$(TypeGenVersion)</_TypeGenVersion>
+        <_TypGenCommand>$(TypeGenToolBin) generate -p $(MSBuildProjectDirectory) $(TypeGenOptions)</_TypGenCommand>
+    </PropertyGroup>
+
+    <Target Name="TSGen_DEBUG" BeforeTargets="TSGen-ToolInt" Condition="'$(TypeGenDebug.ToLower())' == 'true'">
+        <Message Text="Generates from project: $(MSBuildProjectDirectory)" Importance="high"/>
+        <Message Text="Generator tool path: $(TypeGenToolPath)" Importance="high"/>
+        <Message Text="OS: $(OS)" Importance="high"/>
     </Target>
-    
+
     <Target Name="TSGen" BeforeTargets="AfterBuild">
         <Message Text="Generating typescript..." Importance="high"/>
-        <Exec Command="$(TSGenToolBin) generate -p $(MSBuildProjectDirectory)"/>
+        <Message Text="Executing '$(_TypGenCommand)'" Importance="high"/>
+        <Exec Command="$(_TypGenCommand)"/>
     </Target>
-    
+
     <Target Name="TSGen-ToolInt" BeforeTargets="TSGen">
-        <Message Condition="Exists('$(TSGenToolBin)')" Text="TypeGen tool already installed in $(TSGenToolPath)" Importance="high"/>
-        <Message Condition="!Exists('$(TSGenToolBin)')" Text="Installing tool into $(TSGenToolPath)" Importance="high"/>
-        <Exec Condition="!Exists('$(TSGenToolBin)')" Command="dotnet tool install --tool-path $(TSGenToolPath) TypeGen.DotNetCli --version 2.3.3"/>
+        <Message Condition="Exists('$(TypeGenToolBin)')" Text="TypeGen tool already installed in $(TypeGenToolPath)" Importance="high"/>
+        <Message Condition="!Exists('$(TypeGenToolBin)')" Text="Installing tool into $(TypeGenToolPath)" Importance="high"/>
+        <Exec Condition="!Exists('$(TypeGenToolBin)')" Command="dotnet tool install --tool-path $(TypeGenToolPath) TypeGen.DotNetCli --version $(_TypeGenVersion)"/>
     </Target>
 
 </Project>
