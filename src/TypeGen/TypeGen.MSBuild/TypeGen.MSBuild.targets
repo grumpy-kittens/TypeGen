@@ -1,0 +1,25 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <TSGenToolPath>$(MSBuildProjectDirectory)\bin\tools</TSGenToolPath>
+        <TSGenToolBin Condition="'$(OS)' == 'Unix'">$(TSGenToolPath)\dotnet-typegen</TSGenToolBin>
+        <TSGenToolBin Condition="'$(OS)' != 'Unix'">$(TSGenToolPath)\dotnet-typegen.exe</TSGenToolBin>
+    </PropertyGroup>
+    
+    <Target Name="DEBUG" BeforeTargets="BeforeBuild">
+        <Message Text="Project dir: $(MSBuildProjectDirectory)" Importance="high"/>
+        <Message Text="Tool path: $(TSGenToolPath)" Importance="high"/>
+    </Target>
+    
+    <Target Name="TSGen" BeforeTargets="AfterBuild">
+        <Message Text="Generating typescript..." Importance="high"/>
+        <Exec Command="$(TSGenToolBin) generate -p $(MSBuildProjectDirectory)"/>
+    </Target>
+    
+    <Target Name="TSGen-ToolInt" BeforeTargets="TSGen">
+        <Message Condition="Exists('$(TSGenToolBin)')" Text="TypeGen tool already installed in $(TSGenToolPath)" Importance="high"/>
+        <Message Condition="!Exists('$(TSGenToolBin)')" Text="Installing tool into $(TSGenToolPath)" Importance="high"/>
+        <Exec Condition="!Exists('$(TSGenToolBin)')" Command="dotnet tool install --tool-path $(TSGenToolPath) TypeGen.DotNetCli --version 2.3.3"/>
+    </Target>
+
+</Project>

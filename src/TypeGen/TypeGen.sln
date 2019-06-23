@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeGen.Cli.Test", "TypeGen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeGen.AcceptanceTest", "TypeGen.AcceptanceTest\TypeGen.AcceptanceTest.csproj", "{CC91A6B3-AA7E-42B5-B920-5F21DB14D791}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeGen.MSBuild", "TypeGen.MSBuild\TypeGen.MSBuild.csproj", "{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,18 @@ Global
 		{CC91A6B3-AA7E-42B5-B920-5F21DB14D791}.Release|x64.Build.0 = Release|Any CPU
 		{CC91A6B3-AA7E-42B5-B920-5F21DB14D791}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC91A6B3-AA7E-42B5-B920-5F21DB14D791}.Release|x86.Build.0 = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|x64.Build.0 = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Debug|x86.Build.0 = Debug|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|x64.ActiveCfg = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|x64.Build.0 = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|x86.ActiveCfg = Release|Any CPU
+		{450A98AF-C4A9-4BB7-BF9E-B8787DFF548F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

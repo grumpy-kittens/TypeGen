@@ -18,4 +18,6 @@
     <ProjectReference Include="..\TypeGen.Core\TypeGen.Core.csproj" />
   </ItemGroup>
 
+  <Import Project="../TypeGen.MSBuild/TypeGen.MSBuild.targets" Condition=" '$(Configuration)' == 'Debug'"/>
+
 </Project>
